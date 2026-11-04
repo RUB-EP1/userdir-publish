@@ -28,4 +28,4 @@ or with `pipx install userdir-publish`. Then run `userdir-publish --help`.
 
 ## Documentation
 
-See [rub-ep1.github.io/userdir-publish](https://rub-ep1.github.io/userdir-publish) for other installation methods, configuration, group pages, and task runner integration.
+See [rub-ep1.github.io/userdir-publish](https://rub-ep1.github.io/userdir-publish/) for other installation methods, configuration, group pages, and task runner integration.

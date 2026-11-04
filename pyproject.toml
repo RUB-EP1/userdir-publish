@@ -33,8 +33,8 @@ content-type = "text/markdown"
 
 [project.urls]
 Changelog = "https://github.com/RUB-EP1/userdir-publish/releases"
-Documentation = "https://rub-ep1.github.io/userdir-publish"
-Homepage = "https://rub-ep1.github.io/userdir-publish"
+Documentation = "https://rub-ep1.github.io/userdir-publish/"
+Homepage = "https://rub-ep1.github.io/userdir-publish/"
 Issues = "https://github.com/RUB-EP1/userdir-publish/issues"
 Source = "https://github.com/RUB-EP1/userdir-publish"
 
@@ -111,11 +111,6 @@ format-python-code-blocks = false
 cache = true
 exclude = [
     '^https[:]//(?:download|rsync)\.samba\.org/',  # Times out from GitHub Actions runners
-    '^https[:]//github\.com/RUB-EP1/userdir-publish/compare/\$PREVIOUS_TAG',  # Release Drafter fills in the tags when it renders the notes.
-    '^https[:]//pypi\.org/p/\$$',  # https://github.com/RUB-EP1/userdir-publish/issues/3
-    "%7B(?:ORGANIZATION|REPO_NAME)%7D",  # These links in conf.py are only complete when the code runs
-    "results\\.pre-commit\\.ci/latest/github/RUB-EP1/userdir-publish/main$",  # https://github.com/RUB-EP1/userdir-publish/issues/3
-    "rub-ep1\\.github\\.io/userdir-publish",  # https://github.com/RUB-EP1/userdir-publish/issues/3
 ]
 extensions = ["json", "md", "py", "toml", "yaml", "yml"]
 hidden = true  # Include the workflows under .github/
@@ -125,7 +120,11 @@ max_cache_age = "2d"
 max_redirects = 0
 max_retries = 3
 remap = [
+    '^(https[:]//github\.com/RUB-EP1/userdir-publish/compare)/\$PREVIOUS_TAG.*$ $1',  # Release Drafter fills in the tags when it renders the notes
     '^git\+(https://[^@]+)(@.*)?$ $1',  # Check the repository behind pip-style VCS requirements
+    '^https[:]//github\.com/%7BORGANIZATION%7D/%7BREPO_NAME%7D$ https://github.com/RUB-EP1/userdir-publish',  # conf.py fills in these names when it runs
+    '^https[:]//pypi\.org/p/\$$ https://pypi.org/project/userdir-publish/',  # The workflow fills in the package name when it runs
+    '^https[:]//results\.pre-commit\.ci/latest/github/RUB-EP1/userdir-publish/main$ https://results.pre-commit.ci/repo/github/1438477940',  # The badge link redirects to the latest run
 ]
 retry_wait_time = 5
 timeout = 30
