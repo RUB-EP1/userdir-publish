@@ -2,9 +2,14 @@
 
 # userdir-publish
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/MIT)
+[![PyPI package](https://img.shields.io/pypi/v/userdir-publish)](https://pypi.org/project/userdir-publish)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/userdir-publish)](https://pypi.org/project/userdir-publish)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/RUB-EP1/userdir-publish/main.svg)](https://results.pre-commit.ci/latest/github/RUB-EP1/userdir-publish/main)
+[![CI status](https://github.com/RUB-EP1/userdir-publish/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/RUB-EP1/userdir-publish/actions/workflows/ci.yml?query=branch%3Amain)
+[![Test coverage](https://codecov.io/gh/RUB-EP1/userdir-publish/branch/main/graph/badge.svg)](https://app.codecov.io/gh/RUB-EP1/userdir-publish)
 [![Spelling checked](https://img.shields.io/badge/cspell-checked-brightgreen.svg)](https://github.com/streetsidesoftware/cspell/tree/main/packages/cspell)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/RUB-EP1/userdir-publish/main.svg)](https://results.pre-commit.ci/latest/github/RUB-EP1/userdir-publish/main)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)

@@ -5,6 +5,11 @@
 :::{title} Welcome
 :::
 
+[![PyPI package](https://img.shields.io/pypi/v/userdir-publish)](https://pypi.org/project/userdir-publish)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/userdir-publish)](https://pypi.org/project/userdir-publish)
+[![CI status](https://github.com/RUB-EP1/userdir-publish/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/RUB-EP1/userdir-publish/actions/workflows/ci.yml?query=branch%3Amain)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/MIT)
+
 `userdir-publish` copies a built static website to a personal web directory, such as `https://web.example.edu/~jdoe/`, that Apache serves with [`mod_userdir`](https://httpd.apache.org/docs/current/mod/mod_userdir.html). It runs [`rsync`](https://rsync.samba.org) over [SSH](https://www.openssh.org), or to a local path when the web directory is mounted or you are on the server (see {cfg}`.transport`). It removes stale files, sets permissions the web server can read, and refuses a build that lacks `index.html` or the current `.htaccess` rules from {cfg}`.htaccess-source`.
 
 ## Installation
