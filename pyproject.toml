@@ -34,6 +34,7 @@ content-type = "text/markdown"
 [project.urls]
 Changelog = "https://github.com/RUB-EP1/userdir-publish/releases"
 Documentation = "https://rub-ep1.github.io/userdir-publish"
+Homepage = "https://rub-ep1.github.io/userdir-publish"
 Issues = "https://github.com/RUB-EP1/userdir-publish/issues"
 Source = "https://github.com/RUB-EP1/userdir-publish"
 
