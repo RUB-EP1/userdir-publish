@@ -7,7 +7,6 @@ over patterns; otherwise the first matching pattern in file order applies.
 """
 
 # cspell:ignore rwxs
-from __future__ import annotations
 
 import os
 import re

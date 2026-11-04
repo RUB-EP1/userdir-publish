@@ -4,8 +4,6 @@ Run this script to update the committed schema file. It only rewrites the file w
 content changes, so that Prettier can own the formatting.
 """
 
-from __future__ import annotations
-
 import ast
 import inspect
 import itertools

@@ -1,7 +1,5 @@
 """Command-line interface for ``userdir-publish``."""
 
-from __future__ import annotations
-
 import shlex
 import subprocess
 import sys
