@@ -89,7 +89,7 @@ Each layer overrides the previous one:
 
 1. built-in defaults,
 2. the user config, `$XDG_CONFIG_HOME/userdir-publish/config.toml` or `$XDG_CONFIG_HOME/userdir-publish.toml`,
-3. `[tool.userdir-publish]` in the project's [`pyproject.toml`](https://packaging.python.org/en/latest/specifications/pyproject-toml/),
+3. {cfg}`.tool.userdir-publish` in the project's [`pyproject.toml`](https://packaging.python.org/en/latest/specifications/pyproject-toml/),
 4. [command-line flags](#command-line-interface).
 
 `userdir-publish --show-config` prints the merged result. The user config accepts the [project options](#options) at its top level as personal defaults.
@@ -103,6 +103,7 @@ Generated from the settings schema; hover over an option for its description.
 ```{config-schema} /../userdir-publish.schema.json
 :caption: pyproject.toml
 :table: tool.userdir-publish
+:header-titles:
 ```
 
 {cfg}`.source` is required, here or as the first command-line argument. {cfg}`.keep` takes [`rsync` filter patterns](https://download.samba.org/pub/rsync/rsync.1#FILTER_RULES), and {cfg}`.permissions` also accepts a raw [`rsync --chmod`](https://download.samba.org/pub/rsync/rsync.1#opt--chmod) specification. `private` removes all group access; `group-writable` suits [group pages](#group-pages). {cfg}`.htaccess-source` is searched for `.htaccess` files outside hidden directories and, in a Git work tree, outside Git-ignored paths. With a {cfg}`.host`, the printed {cfg}`.url` defaults to `https://<host>/~<user>/<subdirectory>/`, where `<user>` is the [login name](#login-name), so set it only for servers that serve the pages under a different address.
