@@ -72,6 +72,7 @@ def describe_rsync_command():
 
 
 def describe_publish():
+    @pytest.mark.usefixtures("gnu_rsync")
     def it_publishes_locally(project: Path, user_config: Path, tmp_path: Path):
         www = tmp_path / "www"
         (www / "other").mkdir(parents=True)
@@ -95,6 +96,7 @@ def describe_publish():
         assert mode & stat.S_IROTH
         assert not mode & (stat.S_IRGRP | stat.S_IWGRP)
 
+    @pytest.mark.usefixtures("gnu_rsync")
     def it_keeps_protected_directories(
         project: Path, user_config: Path, tmp_path: Path
     ):
@@ -115,6 +117,7 @@ def describe_publish():
         assert (www / "talks").is_dir()
         assert not (www / "old.html").exists()
 
+    @pytest.mark.usefixtures("gnu_rsync")
     def it_creates_missing_parents(project: Path, user_config: Path, tmp_path: Path):
         www = tmp_path / "missing" / "www"
         settings = load_settings(
@@ -202,6 +205,21 @@ def _ssh_settings(project: Path, user_config: Path):
         project_root=project,
         user_config=user_config,
     )
+
+
+def describe_publish_with_openrsync():
+    def it_refuses_to_set_permissions(project: Path, user_config: Path, fake_bin: Path):
+        (fake_bin / "bin" / "rsync").write_text(
+            "#!/bin/sh\necho 'openrsync: protocol version 29'\n"
+        )
+        settings = load_settings(
+            cli={"web_root": str(fake_bin / "www"), "user": "jdoe"},
+            project_root=project,
+            user_config=user_config,
+        )
+        with pytest.raises(PublishError, match="openrsync"):
+            publish(settings)
+        publish(replace(settings, permissions="none"))
 
 
 def describe_publish_over_ssh():

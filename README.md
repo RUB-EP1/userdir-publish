@@ -18,7 +18,7 @@
 
 ## Installation
 
-The tool requires `rsync` on your machine and on the server. Install it from [PyPI](https://pypi.org/project/userdir-publish):
+The tool requires `rsync` on your machine and on the server. On macOS, install GNU `rsync` (for instance with `brew install rsync`), because the built-in `openrsync` ignores the permission settings. Install it from [PyPI](https://pypi.org/project/userdir-publish):
 
 ```bash
 uv tool install userdir-publish

@@ -14,7 +14,7 @@
 
 ## Installation
 
-`rsync` must be available locally and on the server. Install the tool from [PyPI](https://pypi.org/project/userdir-publish):
+`rsync` must be available locally and on the server. On macOS, install GNU `rsync` (for instance with `brew install rsync`), because the built-in `openrsync` ignores the permission settings. Install the tool from [PyPI](https://pypi.org/project/userdir-publish):
 
 ::::{tab-set}
 :sync-group: installer

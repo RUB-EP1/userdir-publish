@@ -38,6 +38,7 @@ def describe_main():
         assert f"target = '{www}'" in result.output
         assert not www.exists()
 
+    @pytest.mark.usefixtures("gnu_rsync")
     def it_publishes_locally(run, project: Path, tmp_path: Path):
         www = tmp_path / "www"
         (project / "pyproject.toml").write_text(
@@ -53,6 +54,7 @@ def describe_main():
         assert "https://example.edu/~jdoe/tips/" in result.output
         assert (www / "tips" / "index.html").is_file()
 
+    @pytest.mark.usefixtures("gnu_rsync")
     def it_does_a_dry_run(run, tmp_path: Path):
         www = tmp_path / "www"
         result = run("--web-root", str(www), "--user", "jdoe", "--dry-run")
@@ -110,6 +112,7 @@ def describe_main():
 
 
 def describe_output():
+    @pytest.mark.usefixtures("gnu_rsync")
     def it_does_not_break_long_paths(
         run, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
     ):

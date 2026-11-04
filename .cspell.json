@@ -37,5 +37,14 @@
   "language": "en-US",
   "useGitignore": true,
   "version": "0.2",
-  "words": ["docstrings", "jdoe", "PyPA", "PyPI", "pyproject", "userdir"]
+  "words": [
+    "docstrings",
+    "jdoe",
+    "openrsync",
+    "PyPA",
+    "PyPI",
+    "pyproject",
+    "usefixtures",
+    "userdir"
+  ]
 }

@@ -201,9 +201,30 @@ def publish(
     validate_build(settings)
     ssh = use_ssh(settings)
     _refuse_symlink(settings, ssh=ssh)
+    if settings.chmod is not None and is_openrsync():
+        msg = (
+            "The rsync in PATH is openrsync, which ignores --chmod, so the published"
+            " files would not get the configured permissions. Install GNU rsync, for"
+            " instance with 'brew install rsync' on macOS, or set permissions to 'none'."
+        )
+        raise PublishError(msg)
     command = rsync_command(settings, ssh=ssh, dry_run=dry_run, progress=progress)
     subprocess.run(command, check=True)  # ruff: ignore[subprocess-without-shell-equals-true]
     return command
+
+
+def is_openrsync() -> bool:
+    """Check whether the rsync in PATH is openrsync, the default rsync of macOS.
+
+    openrsync accepts ``--chmod`` but silently leaves the permissions unchanged.
+    """
+    result = subprocess.run(  # ruff: ignore[subprocess-without-shell-equals-true]
+        [_executable("rsync"), "--version"],
+        capture_output=True,
+        check=False,
+        text=True,
+    )
+    return "openrsync" in result.stdout + result.stderr
 
 
 def _executable(name: str) -> str:
