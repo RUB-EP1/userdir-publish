@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "userdir-publish configuration",
+  "description": "Configuration for the tool.userdir-publish TOML table.",
+  "type": "object",
+  "x-tombi-table-keys-order": "ascending",
+  "properties": {
+    "host": {
+      "description": "SSH host that serves the pages. Without it, only local publishing is possible.",
+      "type": "string",
+      "examples": ["web.example.edu"]
+    },
+    "htaccess-source": {
+      "description": "Directory, relative to the project root, whose ``.htaccess`` files the build must contain.\n\nPublishing is refused if a build lacks one of them or contains an outdated copy.",
+      "type": "string",
+      "examples": ["docs"]
+    },
+    "keep": {
+      "description": "``rsync`` filter patterns, relative to the target, for files that are never deleted.\n\nFor example, ``/*/`` keeps all top-level directories.",
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "permissions": {
+      "description": "Permissions of the published files, as a preset or a raw ``rsync --chmod`` spec.\n\n``private`` hides the files from group members, ``group-writable`` lets the group\nmaintain a shared page, and ``none`` keeps the local modes.",
+      "anyOf": [
+        { "enum": ["private", "group-writable", "none"] },
+        {
+          "type": "string",
+          "pattern": "^[DF]?(?:[0-7]{3,4}|[ugoa]*(?:[-+=][rwxXst]*)+)(?:,[DF]?(?:[0-7]{3,4}|[ugoa]*(?:[-+=][rwxXst]*)+))*$"
+        }
+      ],
+      "default": "private"
+    },
+    "source": {
+      "description": "Directory of the built website, relative to the directory with ``pyproject.toml``.\n\nThe first command-line argument overrides it.",
+      "type": "string",
+      "examples": ["docs/_build/html"]
+    },
+    "subdirectory": {
+      "description": "Subdirectory of the web root that this project owns. Empty means the web root.\n\nFiles in it that are not in the build are deleted.",
+      "type": "string",
+      "default": ""
+    },
+    "transport": {
+      "description": "How to reach the web directory.\n\n``auto`` uses SSH if `host` is set and the target does not exist on this machine.",
+      "enum": ["auto", "local", "ssh"],
+      "default": "auto"
+    },
+    "url": {
+      "description": "Address printed after publishing. ``{user}`` and ``{subdirectory}`` are replaced.\n\nDefaults to ``https://{host}/~{user}/{subdirectory}/`` if `host` is set.",
+      "type": "string",
+      "examples": ["https://web.example.edu/~{user}/{subdirectory}/"]
+    },
+    "user": {
+      "description": "Login name on the host. Defaults to the ``USER`` environment variable.",
+      "type": "string",
+      "examples": ["jdoe"]
+    },
+    "web-root": {
+      "description": "Web directory on the server. ``{user}`` is replaced by the login name.\n\nA leading ``~`` means the home directory of the login on the server.",
+      "type": "string",
+      "default": "~/public_html"
+    }
+  },
+  "additionalProperties": false
+}
