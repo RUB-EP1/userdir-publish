@@ -110,9 +110,10 @@ format-python-code-blocks = false
 [tool.lychee]
 cache = true
 exclude = [
-    "%7B(?:ORGANIZATION|REPO_NAME)%7D",  # These links in conf.py are only complete when the code runs
+    '^https[:]//(?:download|rsync)\.samba\.org/',  # Times out from GitHub Actions runners
     '^https[:]//github\.com/RUB-EP1/userdir-publish/compare/\$PREVIOUS_TAG',  # Release Drafter fills in the tags when it renders the notes.
     '^https[:]//pypi\.org/p/\$$',  # https://github.com/RUB-EP1/userdir-publish/issues/3
+    "%7B(?:ORGANIZATION|REPO_NAME)%7D",  # These links in conf.py are only complete when the code runs
     "results\\.pre-commit\\.ci/latest/github/RUB-EP1/userdir-publish/main$",  # https://github.com/RUB-EP1/userdir-publish/issues/3
     "rub-ep1\\.github\\.io/userdir-publish",  # https://github.com/RUB-EP1/userdir-publish/issues/3
 ]
