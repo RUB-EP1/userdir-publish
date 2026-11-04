@@ -84,7 +84,7 @@ Each layer overrides the previous one:
 
 1. built-in defaults,
 2. the user config, `$XDG_CONFIG_HOME/userdir-publish/config.toml` or `$XDG_CONFIG_HOME/userdir-publish.toml`,
-3. `[tool.userdir-publish]` in the project's [`pyproject.toml`](https://packaging.python.org/en/latest/specifications/pyproject-toml),
+3. `[tool.userdir-publish]` in the project's [`pyproject.toml`](https://packaging.python.org/en/latest/specifications/pyproject-toml/),
 4. [command-line flags](#command-line-interface).
 
 `userdir-publish --show-config` prints the merged result. The user config accepts the [project options](#options) at its top level as personal defaults.

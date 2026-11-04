@@ -72,7 +72,7 @@ html_theme_options = {
 }
 html_title = REPO_NAME
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
+    "python": ("https://docs.python.org/3/", None),
 }
 myst_heading_anchors = 3
 myst_enable_extensions = [

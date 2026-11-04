@@ -5,6 +5,7 @@ from textwrap import dedent
 from typing import TYPE_CHECKING
 
 import pytest
+from rich.console import Console
 from typer.testing import CliRunner
 
 from userdir_publish import cli
@@ -18,6 +19,8 @@ def run(project: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     monkeypatch.chdir(project)
     monkeypatch.setenv("XDG_CONFIG_HOME", str(tmp_path / "xdg"))
     monkeypatch.setenv("COLUMNS", "500")
+    # CI sets FORCE_COLOR, which would insert ANSI codes into the output
+    monkeypatch.setattr(cli, "console", Console(force_terminal=False, soft_wrap=True))
     runner = CliRunner()
 
     def invoke(*args: str):
