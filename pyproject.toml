@@ -49,11 +49,11 @@ dev = [
     { include-group = "test" },
 ]
 doc = [
-    "myst-parser >=5.1",
+    "myst-parser>=5.1",
     "pydata-sphinx-theme",
     "sphinx",
     "sphinx-api-relink",
-    "sphinx-config-schema >=0.0.4",
+    "sphinx-config-schema>=0.0.4",
     "sphinx-copybutton",
     "sphinx-design",
     "sphinxcontrib-typer",
