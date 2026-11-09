@@ -112,8 +112,7 @@ class Settings:
     def login(self) -> str:
         """`user`, or the ``USER`` environment variable if it is not set.
 
-        Raises:
-            ConfigError: If neither is set.
+        :raises ConfigError: If neither is set.
         """
         user = self.user or os.getenv("USER")
         if not user:
@@ -130,8 +129,7 @@ class Settings:
     def source_dir(self) -> Path:
         """`source` resolved against the project root.
 
-        Raises:
-            ConfigError: If `source` is not set.
+        :raises ConfigError: If `source` is not set.
         """
         if self.source is None:
             msg = "No source directory given, pass it as argument or set source"
@@ -151,8 +149,7 @@ class Settings:
 
         A leading ``~`` is kept, so the path is valid on the host and on this machine.
 
-        Raises:
-            ConfigError: If the web root is empty.
+        :raises ConfigError: If the web root is empty.
         """
         root = self.web_root.format(user=self.login).rstrip("/")
         if not root:
@@ -193,8 +190,7 @@ def load_settings(
     nearest such directory at or above the working directory. *user_config* defaults to
     `user_config_path`.
 
-    Raises:
-        ConfigError: If an option is unknown or a value is invalid.
+    :raises ConfigError: If an option is unknown or a value is invalid.
     """
     if project_root is None:
         project_root = _find_project_root(Path.cwd())
@@ -234,8 +230,7 @@ def user_config_path() -> Path:
     :file:`$XDG_CONFIG_HOME/userdir-publish/config.toml`. ``XDG_CONFIG_HOME`` defaults
     to :file:`~/.config`.
 
-    Raises:
-        ConfigError: If both files exist.
+    :raises ConfigError: If both files exist.
     """
     config_home = Path(os.getenv("XDG_CONFIG_HOME") or Path.home() / ".config")
     nested = config_home / TOOL_NAME / "config.toml"

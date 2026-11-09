@@ -31,8 +31,7 @@ def validate_build(settings: Settings) -> None:
     the build. Hidden directories, the build itself, and files ignored by Git are not
     searched.
 
-    Raises:
-        PublishError: If a check fails.
+    :raises PublishError: If a check fails.
     """
     source = settings.source_dir
     if not (source / "index.html").is_file():
@@ -194,9 +193,8 @@ def publish(
     A dry run still validates the build and refuses a symlinked target, but copies
     nothing and creates no directories.
 
-    Raises:
-        PublishError: If the build is invalid or the target is a symlink.
-        subprocess.CalledProcessError: If rsync fails.
+    :raises PublishError: If the build is invalid or the target is a symlink.
+    :raises subprocess.CalledProcessError: If rsync fails.
     """
     validate_build(settings)
     ssh = use_ssh(settings)
