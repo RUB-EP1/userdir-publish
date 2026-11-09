@@ -129,7 +129,7 @@ def _to_json_type(annotation: Any, pattern: str | None = None) -> dict[str, Any]
 def _get_attribute_docstrings(cls: type) -> dict[str, str]:
     """Collect the docstrings that follow the attribute definitions of a class."""
     module = ast.parse(textwrap.dedent(inspect.getsource(cls)))
-    body = module.body[0].body  # ty: ignore[unresolved-attribute]
+    body = module.body[0].body  # ty: ignore[missing-attribute]
     docstrings: dict[str, str] = {}
     for node, next_node in itertools.pairwise(body):
         if (
