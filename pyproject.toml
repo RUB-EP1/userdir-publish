@@ -85,6 +85,9 @@ repo-name = "userdir-publish"
 repo-organization = "RUB-EP1"
 repo-title = "userdir-publish"
 
+[tool.compwa.policy.github]
+keep-workflow = ["lock.yml"]
+
 [tool.compwa.policy.python]
 type-checker = ["ty"]
 
