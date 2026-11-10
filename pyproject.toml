@@ -114,14 +114,13 @@ format-python-code-blocks = false
 [tool.lychee]
 cache = true
 cache_exclude_status = "400.."
-# [:] keeps Lychee from extracting regex patterns as URLs.
-
 extensions = ["json", "md", "py", "toml", "yaml", "yml"]
 hidden = true  # Include the workflows under .github/
 include_fragments = "anchor-only"
 include_verbatim = true
 max_cache_age = "7d"
 remap = [
+    # [:] keeps Lychee from extracting regex patterns as URLs
     '^(https[:]//github\.com/RUB-EP1/userdir-publish/compare)/\$PREVIOUS_TAG.*$ $1',  # Release Drafter fills in the tags when it renders the notes
     '^git\+(https[:]//[^@]+)(@.*)?$ $1',  # Check the repository behind pip-style VCS requirements
     '^https[:]//github\.com/%7BORGANIZATION%7D/%7BREPO_NAME%7D$ https://github.com/RUB-EP1/userdir-publish',  # conf.py fills in these names when it runs

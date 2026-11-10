@@ -17,5 +17,3 @@ on:
 jobs:
   lock:
     uses: ComPWA/actions/.github/workflows/lock.yml@a024afbb9e182bea4924a73fc60ae59462849ebb # v4.2.0
-    with:
-      generate-only: true # This repository has no lock publishing token.
