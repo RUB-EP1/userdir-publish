@@ -75,7 +75,9 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
 }
 myst_heading_anchors = 3
+myst_colon_fence_exact_match = True
 myst_enable_extensions = [
+    "alert",
     "colon_fence",
 ]
 nitpicky = True
