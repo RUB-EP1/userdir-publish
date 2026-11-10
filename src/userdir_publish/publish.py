@@ -26,9 +26,9 @@ class PublishError(RuntimeError):
 def validate_build(settings: Settings) -> None:
     """Check that the build can be published.
 
-    The build must contain an ``index.html``. If `~.Settings.htaccess_source` is set,
-    every ``.htaccess`` file under it must appear unchanged at the same relative path in
-    the build. Hidden directories, the build itself, and files ignored by Git are not
+    The build must contain an ``index.html``. If `.htaccess_source` is set, every
+    ``.htaccess`` file under it must appear unchanged at the same relative path in the
+    build. Hidden directories, the build itself, and files ignored by Git are not
     searched.
 
     :raises PublishError: If a check fails.
@@ -125,9 +125,9 @@ def rsync_command(
     """Build the rsync command that mirrors the build to the target.
 
     The command passes ``--delete``, so files in the target that are not in the build
-    are removed, except those matched by `~.Settings.keep`. Unless *dry_run* is set, a
-    local target directory is created, and over SSH the remote target is created by the
-    command itself. With *progress*, rsync reports the overall transfer progress.
+    are removed, except those matched by `keep <.Settings.keep>`. Unless *dry_run* is
+    set, a local target directory is created, and over SSH the remote target is created
+    by the command itself. With *progress*, rsync reports the overall transfer progress.
     """
     command = [_executable("rsync"), "--recursive", "--links", "--times", "--delete"]
     command.extend(_mkpath_arguments(settings, ssh=ssh, dry_run=dry_run))
