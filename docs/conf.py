@@ -22,6 +22,11 @@ autodoc_member_order = "bysource"
 autodoc_typehints_format = "short"
 copyright = f"2026, {ORGANIZATION}"
 default_role = "py:obj"
+exclude_patterns = [
+    "**AGENTS.md",
+    "**CLAUDE.md",
+    "**GEMINI.md",
+]
 extensions = [
     "myst_parser",
     "sphinx_api_relink",
