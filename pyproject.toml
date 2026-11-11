@@ -86,6 +86,7 @@ repo-organization = "RUB-EP1"
 repo-title = "userdir-publish"
 
 [tool.compwa.policy.github]
+autofix-ci = true
 dependabot-assignees = ["redeboer"]
 keep-workflow = ["lock.yml"]
 
