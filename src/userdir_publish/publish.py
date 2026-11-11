@@ -125,9 +125,9 @@ def rsync_command(
     """Build the rsync command that mirrors the build to the target.
 
     The command passes ``--delete``, so files in the target that are not in the build
-    are removed, except those matched by `keep <.Settings.keep>`. Unless *dry_run* is
-    set, a local target directory is created, and over SSH the remote target is created
-    by the command itself. With *progress*, rsync reports the overall transfer progress.
+    are removed, except those matched by `.keep`. Unless *dry_run* is set, a local
+    target directory is created, and over SSH the remote target is created by the
+    command itself. With *progress*, rsync reports the overall transfer progress.
     """
     command = [_executable("rsync"), "--recursive", "--links", "--times", "--delete"]
     command.extend(_mkpath_arguments(settings, ssh=ssh, dry_run=dry_run))
