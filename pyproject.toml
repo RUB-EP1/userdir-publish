@@ -44,6 +44,7 @@ userdir-publish = "userdir_publish.cli:app"
 [dependency-groups]
 dev = [
     "ruff",
+    "ty",
     { include-group = "doc" },
     { include-group = "style" },
     { include-group = "test" },
@@ -59,7 +60,6 @@ doc = [
     "sphinxcontrib-typer",
 ]
 style = [
-    "ty",
     { include-group = "types" },
 ]
 test = [
@@ -85,6 +85,11 @@ repo-name = "userdir-publish"
 repo-organization = "RUB-EP1"
 repo-title = "userdir-publish"
 
+[tool.compwa.policy.github]
+autofix-ci = true
+dependabot-assignees = ["redeboer"]
+keep-workflow = ["lock.yml"]
+
 [tool.compwa.policy.python]
 type-checker = ["ty"]
 
@@ -109,25 +114,19 @@ format-python-code-blocks = false
 
 [tool.lychee]
 cache = true
-exclude = [
-    '^https[:]//(?:download|rsync)\.samba\.org/',  # Times out from GitHub Actions runners
-]
+cache_exclude_status = "400.."
 extensions = ["json", "md", "py", "toml", "yaml", "yml"]
 hidden = true  # Include the workflows under .github/
 include_fragments = "anchor-only"
 include_verbatim = true
-max_cache_age = "2d"
-max_redirects = 0
-max_retries = 3
+max_cache_age = "7d"
 remap = [
+    # [:] keeps Lychee from extracting regex patterns as URLs
     '^(https[:]//github\.com/RUB-EP1/userdir-publish/compare)/\$PREVIOUS_TAG.*$ $1',  # Release Drafter fills in the tags when it renders the notes
-    '^git\+(https://[^@]+)(@.*)?$ $1',  # Check the repository behind pip-style VCS requirements
+    '^git\+(https[:]//[^@]+)(@.*)?$ $1',  # Check the repository behind pip-style VCS requirements
     '^https[:]//github\.com/%7BORGANIZATION%7D/%7BREPO_NAME%7D$ https://github.com/RUB-EP1/userdir-publish',  # conf.py fills in these names when it runs
     '^https[:]//pypi\.org/p/\$$ https://pypi.org/project/userdir-publish/',  # The workflow fills in the package name when it runs
-    '^https[:]//results\.pre-commit\.ci/latest/github/RUB-EP1/userdir-publish/main$ https://results.pre-commit.ci/repo/github/1438477940',  # The badge link redirects to the latest run
 ]
-retry_wait_time = 5
-timeout = 30
 
 [tool.poe.executor]
 isolated = true
@@ -245,10 +244,10 @@ help = "Run all continuous integration (CI) tasks locally"
 ignore_fail = "return_non_zero"
 sequence = [
     "style",
+    "linkcheck",
     "doc",
     "cov",
     "test-all",
-    "linkcheck",
 ]
 
 [tool.poe.tasks.style]
@@ -392,7 +391,7 @@ include = ["pyproject.toml"]
 
 [[tool.tombi.schemas]]
 root = "tool.compwa.policy"
-path = "https://raw.githubusercontent.com/ComPWA/policy/0.10.3/compwa-policy.schema.json"
+path = "https://raw.githubusercontent.com/ComPWA/policy/0.10.7/compwa-policy.schema.json"
 include = ["pyproject.toml"]
 
 [tool.ty.rules]

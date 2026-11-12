@@ -22,6 +22,11 @@ autodoc_member_order = "bysource"
 autodoc_typehints_format = "short"
 copyright = f"2026, {ORGANIZATION}"
 default_role = "py:obj"
+exclude_patterns = [
+    "**AGENTS.md",
+    "**CLAUDE.md",
+    "**GEMINI.md",
+]
 extensions = [
     "myst_parser",
     "sphinx_api_relink",
@@ -75,7 +80,9 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
 }
 myst_heading_anchors = 3
+myst_colon_fence_exact_match = True
 myst_enable_extensions = [
+    "alert",
     "colon_fence",
 ]
 nitpicky = True
